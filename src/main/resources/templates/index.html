@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Writer Management</title>
+    <link rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    crossorigin="anonymous">
+</head>
+<body>
+    <div class="container my-2">
+        <a th:href="@{/showNewWriterForm}" class="btn btn-primary btn-sm mb-3">Add New Writer</a>
+
+        <h1>Writer List</h1>
+        <table border="2" class="table table-striped table-responsive-md">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+<!--                    <th>Books</th>-->
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="writer: ${writerList}">
+                    <td th:text="${writer.writerId}"></td>
+                    <td th:text="${writer.firstName}"></td>
+                    <td th:text="${writer.lastName}"></td>
+<!--                    <td th:text="${writer.bookCollection}}"></td>-->
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
