@@ -22,4 +22,9 @@ public class Book {
     @OneToOne(targetEntity = Writer.class)
     @JoinColumn(name = "writer", referencedColumnName = "writerId")
     private Writer writer;
+
+    @Override
+    public String toString() {
+        return name+" ";
+    }
 }

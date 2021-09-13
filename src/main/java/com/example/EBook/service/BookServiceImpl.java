@@ -5,9 +5,11 @@ import com.example.EBook.model.Writer;
 import com.example.EBook.repository.BookRepository;
 import com.example.EBook.repository.WriterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class BookServiceImpl implements BookService{
     @Autowired
     private BookRepository bookRepository;

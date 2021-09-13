@@ -28,4 +28,10 @@ public class Writer {
 //    @OneToMany(targetEntity = Book.class, cascade = CascadeType.ALL)
 //    @JoinColumn(name = "BookList", referencedColumnName = "bookId")
 //    private Collection<Book> bookCollection;
+
+
+    @Override
+    public String toString() {
+        return firstName +" "+ lastName;
+    }
 }
