@@ -1,5 +1,6 @@
 package com.example.EBook.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,10 +8,11 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
-@Getter
-@Setter
+@Getter @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "writer")
 public class Writer {
@@ -25,10 +27,8 @@ public class Writer {
     @Column(name = "lastName")
     private String lastName;
 
-//    @OneToMany(targetEntity = Book.class, cascade = CascadeType.ALL)
-//    @JoinColumn(name = "BookList", referencedColumnName = "bookId")
-//    private Collection<Book> bookCollection;
-
+    @OneToMany(mappedBy = "writer", cascade = CascadeType.ALL)
+    private List<Book> bookList;
 
     @Override
     public String toString() {

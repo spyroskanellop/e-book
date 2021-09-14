@@ -1,14 +1,15 @@
 package com.example.EBook.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
+@Getter @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "Book")
 public class Book {
@@ -19,8 +20,9 @@ public class Book {
     private String name;
     @Column(name = "price")
     private double price;
-    @OneToOne(targetEntity = Writer.class)
-    @JoinColumn(name = "writer", referencedColumnName = "writerId")
+
+    @ManyToOne
+    @JoinColumn(name = "writerId")
     private Writer writer;
 
     @Override
