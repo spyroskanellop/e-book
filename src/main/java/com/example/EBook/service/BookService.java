@@ -10,4 +10,6 @@ import java.util.List;
 public interface BookService {
     List<Book> getAllBooks();
     void saveBook(Book book);
+    Book findBook(int id) throws BookNotFoundException;
+    void deleteBook(Integer id) throws BookNotFoundException;
 }
