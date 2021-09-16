@@ -47,12 +47,15 @@ public class BookController {
         }
     }
     @GetMapping("/delete/{id}")
-    public String deleteBook(@PathVariable("id") Integer id, Model model, RedirectAttributes redirectAttributes){
+    public String deleteBook(@PathVariable("id") Integer id, RedirectAttributes redirectAttributes){
         try {
             bookService.deleteBook(id);
+            redirectAttributes.addFlashAttribute("message", "Book has been deleted");
         } catch (BookNotFoundException e) {
             redirectAttributes.addFlashAttribute("message", e.getMessage());
         }
         return "redirect:/book/viewBooks";
     }
+    @GetMapping("/")
+    public String goToWriter(){return "redirect:/";}
 }

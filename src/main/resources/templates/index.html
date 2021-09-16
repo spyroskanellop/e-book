@@ -6,26 +6,40 @@
     <link rel="stylesheet"
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 </head>
 <body>
-    <div class="container my-2">
-        <a th:href="@{/showNewWriterForm}" class="btn btn-primary btn-sm mb-3">Add New Writer</a>
-
+    <div class="container-fluid text-center">
         <h1>Writer List</h1>
+        <div class="m-2">
+            <a th:href="@{/showNewWriterForm}" class="btn btn-primary btn-sm mb-3">Add New Writer</a>
+            <a th:href="@{/goBook}" class="btn btn-secondary btn-sm mb-3">Go to book</a>
+            <div th:if="${message}" class="alert alert-success text-center">
+                [[${message}]]
+            </div>
+        </div>
+
         <table border="2" class="table table-striped table-responsive-md">
-            <thead>
+            <thead class="table-dark">
                 <tr>
                     <th>ID</th>
                     <th>Firstname</th>
                     <th>Lastname</th>
+                    <th>Books</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="writer: ${writerList}">
-                    <td th:text="${writer.writerId}"></td>
-                    <td th:text="${writer.firstName}"></td>
-                    <td th:text="${writer.lastName}"></td>
-                </tr>
+            <tr th:each="writer: ${writerList}">
+                <td th:text="${writer.writerId}"></td>
+                <td th:text="${writer.firstName}"></td>
+                <td th:text="${writer.lastName}"></td>
+                <td th:text="${writer.bookList}"></td>
+                <td>
+                    <a class="h4 mr-3" th:href="@{'/editWriter/' + ${writer.writerId}}">Edit</a>
+                    <a class="h4 mr-3" th:href="@{'/deleteWriter/' + ${writer.writerId}}">Delete</a>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>
