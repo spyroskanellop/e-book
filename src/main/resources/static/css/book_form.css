@@ -1,0 +1,47 @@
+*{
+    box-sizing: border-box;
+}
+/* body{
+    background-image: url('../images/book.jpg');
+    margin: 0;
+    height: 100%;
+}
+.container-fluid{
+    padding-top:15%;
+}
+*/
+body,html{
+    height:100%;
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+}
+.img{
+    background-image: url('../images/book.jpg');
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100%;
+    filter:blur(5px);
+}
+.container-fluid{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 5;
+    width: 45%;
+    padding: 40px 0;
+    text-align: center;
+    /*
+    border-top-left-radius: 70px;
+    border-top-right-radius: 70px;
+    */
+    border-radius: 60px 160px;
+    box-shadow: 5px 10px;
+    background-color: rgba(0,0,0,0.6);
+    color: #fff;
+    font-weight: bold;
+    border: 10px inset #fff;
+}

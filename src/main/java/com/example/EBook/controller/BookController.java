@@ -4,6 +4,7 @@ import com.example.EBook.model.Book;
 import com.example.EBook.repository.BookRepository;
 import com.example.EBook.service.BookNotFoundException;
 import com.example.EBook.service.BookService;
+import com.example.EBook.service.WriterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class BookController {
     @Autowired
     BookService bookService;
+    @Autowired
+    WriterService writerService;
+
 
     @GetMapping("/viewBooks")
     public String getBooks(Model model){
@@ -24,6 +28,7 @@ public class BookController {
     @GetMapping("/showNewBookForm")
     public String showNewBookForm(Model model){
         model.addAttribute("book", new Book());
+        model.addAttribute("writerList", writerService.getAllWriters());
         model.addAttribute("pageTitle", "Add New Book");
         return "new_book";
     }
