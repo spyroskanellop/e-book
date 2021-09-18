@@ -16,8 +16,8 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bookId;
-    @Column(name = "name")
-    private String name;
+    @Column(name = "title")
+    private String title;
     @Column(name = "price")
     private double price;
 
@@ -27,6 +27,6 @@ public class Book {
 
     @Override
     public String toString() {
-        return name+" ";
+        return title+" ";
     }
 }

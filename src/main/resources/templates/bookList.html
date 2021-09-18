@@ -8,10 +8,28 @@
           crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/book_table.css}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
 </head>
 <body>
-<div class="container-fluid text-center">
+
+<input type="checkbox" id="check">
+<label for="check">
+    <i class="fas fa-bars" id="btn" onclick="blurBackground()"></i>
+    <i class="fas fa-times" id="cancel" onclick="removeAttr()"></i>
+</label>
+<div class="sidebar">
+    <h2>SideBar</h2>
+    <ul>
+        <li>
+            <a th:href="@{/book/showNewBookForm}">Add New Book</a>
+        </li>
+        <li>
+            <a th:href="@{/}">Go to writer</a>
+        </li>
+    </ul>
+</div>
+
+<div id="container" class="container-fluid text-center">
     <h1>Book List</h1>
     <div th:if="${message}" class="alert alert-success text-center">
         [[${message}]]
@@ -19,17 +37,17 @@
     <table>
         <thead class="head">
         <tr>
-            <th>ID</th>
-            <th>Name <i class="fa fa-book" style="font-size:20px; margin-left:5px;"></i></th>
-            <th>Price <i class="fas fa-euro-sign"></i></th>
-            <th>Writer</th>
+            <th>ID <i class="fas fa-id-badge" style="font-size:20px; margin-left:5px;"></i></th>
+            <th>Title <i class="fa fa-book" style="font-size:20px; margin-left:5px;"></i></th>
+            <th>Price <i class="fas fa-euro-sign" style="font-size:20px; margin-left:5px;"></i></th>
+            <th>Writer <i class="fas fa-pencil-alt" style="font-size:20px; margin-left:5px;"></i></th>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="book: ${bookList}">
             <td th:text="${book.bookId}"></td>
-            <td class="book-name" th:text="${book.name}"></td>
+            <td class="book-name" th:text="${book.title}"></td>
             <td th:text="${book.price}"></td>
             <td th:text="${book.writer}"></td>
             <td>
@@ -39,9 +57,21 @@
         </tr>
         </tbody>
     </table>
-    <a th:href="@{/book/showNewBookForm}" class="btn btn-primary btn-sm mb-3">Add New Book</a>
-    <a th:href="@{/}" class="btn btn-secondary btn-sm mb-3">Go to writer</a>
-
 </div>
+<script type="text/javascript">
+
+    function blurBackground(){
+        var container = document.getElementById('container');
+        /* container.style.filter = "blur(5px)";
+        container.style.paddingTop= "100px";
+        container.style.paddingLeft= "100px";
+        */
+        container.classList.add("blurred");
+    }
+    function removeAttr(){
+       var container = document.getElementById('container');
+        container.classList.remove("blurred");
+    }
+</script>
 </body>
 </html>

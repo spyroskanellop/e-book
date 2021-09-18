@@ -45,6 +45,7 @@ public class BookController {
             Book book = bookService.findBook(id);
             model.addAttribute("book", book);
             model.addAttribute("pageTitle", "Edit User (ID "+ id +")");
+            model.addAttribute("writerList", writerService.getAllWriters());
             return "new_book";
         } catch (BookNotFoundException e) {
             redirectAttributes.addFlashAttribute("message", e.getMessage());
