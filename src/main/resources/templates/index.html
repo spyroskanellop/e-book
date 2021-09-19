@@ -4,44 +4,70 @@
     <meta charset="UTF-8">
     <title>Writer Management</title>
     <link rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-    crossorigin="anonymous">
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/writer_table.css}">
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
 </head>
 <body>
-    <div class="container-fluid text-center">
-        <h1>Writer List</h1>
-        <div class="m-2">
-            <a th:href="@{/showNewWriterForm}" class="btn btn-primary btn-sm mb-3">Add New Writer</a>
-            <a th:href="@{/goBook}" class="btn btn-secondary btn-sm mb-3">Go to book</a>
-            <div th:if="${message}" class="alert alert-success text-center">
-                [[${message}]]
-            </div>
-        </div>
 
-        <table border="2" class="table table-striped table-responsive-md">
-            <thead class="table-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Books</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-            <tr th:each="writer: ${writerList}">
-                <td th:text="${writer.writerId}"></td>
-                <td th:text="${writer.firstName}"></td>
-                <td th:text="${writer.lastName}"></td>
-                <td th:text="${writer.bookList}"></td>
-                <td>
-                    <a class="h4 mr-3" th:href="@{'/editWriter/' + ${writer.writerId}}">Edit</a>
-                    <a class="h4 mr-3" th:href="@{'/deleteWriter/' + ${writer.writerId}}">Delete</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+<input type="checkbox" id="check">
+<label for="check">
+    <i class="fas fa-bars" id="btn" onclick="blurBackground()"></i>
+    <i class="fas fa-times" id="cancel" onclick="removeAttr()"></i>
+</label>
+<div class="sidebar">
+    <h2>SideBar</h2>
+    <ul>
+        <li>
+            <a th:href="@{/showNewWriterForm}">Add New Writer</a>
+        </li>
+        <li>
+            <a th:href="@{/goBook}">Go to Book</a>
+        </li>
+    </ul>
+</div>
+
+<div id="container" class="container-fluid text-center">
+    <h1>Writer List</h1>
+    <div th:if="${message}" class="alert alert-success text-center">
+        [[${message}]]
     </div>
+    <table>
+        <thead class="head">
+        <tr>
+            <th>ID <i class="fas fa-id-badge" style="font-size:20px; margin-left:5px;"></i></th>
+            <th>Firstname <i class="fa fa-book" style="font-size:20px; margin-left:5px;"></i></th>
+            <th>Lastname <i class="fas fa-chess-king" style="font-size:20px; margin-left:5px;"></i></th>
+<!--            <th>Writer <i class="fas fa-pencil-alt" style="font-size:20px; margin-left:5px;"></i></th>-->
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="writer: ${writerList}">
+            <td th:text="${writer.writerId}"></td>
+            <td class="writer-name" th:text="${writer.firstName}"></td>
+            <td th:text="${writer.lastName}"></td>
+<!--            <td th:text="${writer.writer}"></td>-->
+            <td>
+                <button><a th:href="@{'/editWriter/' + ${writer.writerId}}">Edit</a></button>
+                <button><a th:href="@{'/deleteWriter/' + ${writer.writerId}}">Delete</a></button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+
+    function blurBackground(){
+        var container = document.getElementById('container');
+        container.classList.add("blurred");
+    }
+    function removeAttr(){
+       var container = document.getElementById('container');
+        container.classList.remove("blurred");
+    }
+</script>
 </body>
 </html>
